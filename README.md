@@ -1,13 +1,13 @@
-# NO LONGER MAINTAINED
+# libxmljs5
 
-# Libxmljs2
+LibXML bindings for [node.js](http://nodejs.org/), with support for **Node 22, 24, and 26**.
 
-LibXML bindings for [node.js](http://nodejs.org/)
-This package was forked as the original one is fairly unmaintained.
+This is a maintained fork of [libxmljs2](https://github.com/marudor/libxmljs2) (itself a fork of the original [libxmljs](https://github.com/libxmljs/libxmljs)), created because the upstream packages were unmaintained and no longer built on modern Node versions. Full credit to the original authors: marudor, Jeff Smick, and Marco Rogers.
 
 ```javascript
-var libxmljs = require('libxmljs2');
-var xml =
+const libxmljs = require('libxmljs5');
+
+const xml =
   '<?xml version="1.0" encoding="UTF-8"?>' +
   '<root>' +
   '<child foo="bar">' +
@@ -16,39 +16,49 @@ var xml =
   '<sibling>with content!</sibling>' +
   '</root>';
 
-var xmlDoc = libxmljs.parseXml(xml);
+const xmlDoc = libxmljs.parseXml(xml);
 
 // xpath queries
-var gchild = xmlDoc.get('//grandchild');
-
+const gchild = xmlDoc.get('//grandchild');
 console.log(gchild.text()); // prints "grandchild content"
 
-var children = xmlDoc.root().childNodes();
-var child = children[0];
-
+const children = xmlDoc.root().childNodes();
+const child = children[0];
 console.log(child.attr('foo').value()); // prints "bar"
 ```
 
-## Support
+## Why this fork?
 
-- Docs - [http://github.com/marudor/libxmljs2/wiki](http://github.com/marudor/libxmljs2/wiki)
+`libxmljs2` (and the original `libxmljs`) are no longer maintained and fail to build on Node 26+. This package updates the native addon dependencies (NAN, node-gyp) to restore compatibility with the latest Node.js releases while keeping the same API.
+
+## Node.js compatibility
+
+| Node version | Status |
+|---|---|
+| 22 | supported |
+| 24 | supported |
+| 26 | supported |
+
+## Installation
+
+```shell
+npm install libxmljs5
+```
 
 ## API and Examples
 
-Check out the wiki [http://github.com/marudor/libxmljs2/wiki](https://github.com/marudor/libxmljs2/wiki).
+The API is identical to libxmljs2. Check out the [examples](./examples) folder.
 
-See the [examples](https://github.com/marudor/libxmljs2/tree/main/examples) folder.
+Original wiki: [http://github.com/marudor/libxmljs2/wiki](https://github.com/marudor/libxmljs2/wiki).
 
-## Installation via [npm](https://npmjs.org)
+## Building from source
+
+Make sure you have met the requirements for [node-gyp](https://github.com/TooTallNate/node-gyp#installation).
 
 ```shell
-npm install libxmljs2
+yarn build
 ```
 
-## Contribute
+## License
 
-Start by checking out the [open issues](https://github.com/marudor/libxmljs2/issues?labels=&page=1&state=open). Specifically the [desired feature](https://github.com/marudor/libxmljs2/issues?labels=desired+feature&page=1&state=open) ones.
-
-### Requirements
-
-Make sure you have met the requirements for [node-gyp](https://github.com/TooTallNate/node-gyp#installation). You DO NOT need to manually install node-gyp; it comes bundled with node.
+MIT. Original copyright 2009, Squish Tech, LLC. See [LICENSE](./LICENSE).

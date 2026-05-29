@@ -1,13 +1,14 @@
 {
-  "name": "libxmljs2",
-  "author": "marudor",
+  "name": "libxmljs5",
+  "author": "Pnlvfx",
   "contributors": [
+    "marudor",
     "Jeff Smick",
     "Marco Rogers"
   ],
   "packageManager": "yarn@4.15.0+sha512.07ec708ac11e2eaa4ea2b04cfbb272812f7e74a753f1595eaef4486c663a98306a30cca3e6fc40f7a0b168dcfb3a2490b6a5e0501e20fb69cc36f563dd161c53",
-  "description": "libxml bindings for v8 javascript engine",
-  "version": "0.37.0",
+  "description": "libxml bindings for v8 javascript engine (Node 22+ including Node 26)",
+  "version": "1.0.0",
   "scripts": {
     "build": "node-gyp rebuild",
     "prebuild": "prebuild",
@@ -18,11 +19,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/marudor/libxmljs2.git"
+    "url": "https://github.com/Pnlvfx/libxmljs5.git"
   },
   "bugs": {
-    "url": "http://github.com/marudor/libxmljs2/issues"
+    "url": "https://github.com/Pnlvfx/libxmljs5/issues"
   },
+  "homepage": "https://github.com/Pnlvfx/libxmljs5#readme",
   "main": "./index",
   "license": "MIT",
   "engines": {
