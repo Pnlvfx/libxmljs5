@@ -1,13 +1,4 @@
 {
-    "variables": {
-        # Node 26 on Windows sets enable_thin_lto="true" globally in common.gypi,
-        # which injects -flto=thin and /opt:lldltojobs into AdditionalOptions for
-        # all targets. MSVC's link.exe fatally errors on lldltojobs (LNK1117).
-        # Override these variables here so the conditions in common.gypi don't fire.
-        "enable_thin_lto": "",
-        "enable_lto": "",
-        "lto_jobs": "",
-    },
     "targets": [
         {
             "target_name": "xmljs",
@@ -82,21 +73,6 @@
                             "CLANG_CXX_LANGUAGE_STANDARD": "c++20",
                             "OTHER_LDFLAGS": ["-undefined dynamic_lookup"],
                         },
-                    },
-                ],
-                [
-                    'OS=="win"',
-                    {
-                        # Node 26 on Windows leaks Clang/LLD flags (-flto=thin, lldltojobs)
-                        # into the build environment. MSVC's link.exe fatally errors on
-                        # lldltojobs (LNK1117). Strip them by overriding with empty lists.
-                        "msvs_settings": {
-                            "VCLinkerTool": {
-                                "AdditionalOptions": [],
-                            },
-                        },
-                        "cflags": [],
-                        "ldflags": [],
                     },
                 ]
             ],
