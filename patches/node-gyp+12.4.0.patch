@@ -1,0 +1,17 @@
+diff --git a/node_modules/node-gyp/lib/create-config-gypi.js b/node_modules/node-gyp/lib/create-config-gypi.js
+index 01a820e..054a4ad 100644
+--- a/node_modules/node-gyp/lib/create-config-gypi.js
++++ b/node_modules/node-gyp/lib/create-config-gypi.js
+@@ -99,6 +99,12 @@ async function getCurrentConfigGypi ({ gyp, nodeDir, vsInfo, python }) {
+     if (config.variables.clang === 1) {
+       config.variables.clang = 0
+     }
++    // Node 26 Windows binaries are built with ThinLTO (Clang/LLD) but addons
++    // are compiled with MSVC which doesn't understand these flags, causing
++    // fatal linker error LNK1117. Reset them so common.gypi conditions don't fire.
++    config.variables.enable_thin_lto = 'false'
++    config.variables.enable_lto = 'false'
++    config.variables.lto_jobs = ''
+   }
+ 
+   // loop through the rest of the opts and add the unknown ones as variables.
