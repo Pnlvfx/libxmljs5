@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - run: npm install -g corepack
+      - run: npm install -g corepack --force
       - run: corepack enable
       - run: yarn install --immutable
         env:
