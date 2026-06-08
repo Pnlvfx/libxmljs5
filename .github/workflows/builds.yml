@@ -31,6 +31,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+      - run: npm install -g corepack
       - run: corepack enable
       - run: yarn install --immutable
         env:
@@ -53,8 +54,8 @@ jobs:
       image: node:${{ matrix.node }}-alpine
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          apk add --no-cache python3 make g++
+      - run: apk add --no-cache python3 make g++
+      - run: npm install -g corepack
       - run: corepack enable
       - run: yarn install --immutable
         env:
@@ -87,6 +88,8 @@ jobs:
           tag: ${{ steps.vars.outputs.tag }}
           files: |
             ./prebuilds/**/*.tar.gz
+      - run: npm install -g corepack
+      - run: corepack enable
       - run: yarn install --immutable
       - run: yarn npm publish --access public
         env:
