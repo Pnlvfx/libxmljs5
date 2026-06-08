@@ -39,7 +39,8 @@
     "lib",
     "vendor",
     "binding.gyp",
-    "Makefile"
+    "Makefile",
+    "patches"
   ],
   "dependencies": {
     "bindings": "~1.5.0",
