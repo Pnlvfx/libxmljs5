@@ -43,6 +43,8 @@ jobs:
       - run: yarn tsd
       - run: yarn test
       - run: yarn prebuild
+        env:
+          PREBUILD_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-${{ matrix.node }}-binary
@@ -71,6 +73,8 @@ jobs:
       - run: yarn tsd
       - run: yarn test
       - run: yarn prebuild
+        env:
+          PREBUILD_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v4
         with:
           name: alpine-${{ matrix.node }}-binary
